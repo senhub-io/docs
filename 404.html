@@ -6,12 +6,16 @@
     <title>SenHub Agent documentation has moved</title>
     <meta name="robots" content="noindex" />
     <script>
-      // Path-preserving redirect: docs.senhub.io/<path> -> agent.senhub.io/docs/<path>
-      // Old pages already lived under /docs/... so the full pathname is appended.
+      // Path-preserving redirect to the versioned MkDocs site. Old Hugo pages
+      // lived at docs.senhub.io/docs/<page>; the new home is
+      // agent.senhub.io/docs/latest/<page>. Strip the leading /docs segment and
+      // prefix /docs/latest so content deep-links keep working.
       (function () {
+        var path = location.pathname.replace(/^\/docs(?=\/|$)/, "");
+        if (path === "") path = "/";
         var target =
-          "https://agent.senhub.io/docs" +
-          location.pathname +
+          "https://agent.senhub.io/docs/latest" +
+          path +
           location.search +
           location.hash;
         var canonical = document.createElement("link");
@@ -42,7 +46,7 @@
   <body>
     <p>
       This page has moved to
-      <a id="l" href="https://agent.senhub.io/docs/">agent.senhub.io/docs</a>.
+      <a id="l" href="https://agent.senhub.io/docs/latest/">agent.senhub.io/docs</a>.
       Redirecting…
     </p>
   </body>
